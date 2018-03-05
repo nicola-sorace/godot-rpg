@@ -14,8 +14,8 @@ var hand_l
 var spell_r
 var spell_l
 
-var speed = 20
-var jump = 20
+var speed = 10
+var jump = 7
 
 var hover
 
@@ -85,11 +85,12 @@ func _process(delta):
 		else:
 			set_anim("Idle-loop")
 			set_linear_velocity(v)
-			
+	elif not anim.is_playing():
+		set_anim("Fall-loop")
 		
 	if not hud.has_mouse:
 		###  Spells:
-		var source = (app.global_transform.translated(Vector3(0,3,-1.5))).origin
+		var source = (app.global_transform.translated(Vector3(0,1,-0.5))).origin
 		if Input.is_action_pressed("spell_right"):  #Right spell
 			point_to(arm_r, pos, Vector3(-2,2,20))
 			if Input.is_action_just_pressed("spell_right"):
@@ -119,7 +120,7 @@ func get_hover():  #Returns result of an intersect ray from mouse position.
 		hover = result
 	
 func face(bone_id, target):
-	skel.set_bone_pose(bone_id, skel.get_bone_pose(bone_id).looking_at((target-Vector3(0,4,0)-transform.origin).rotated(Vector3(0,1,0), -deg2rad(app.rotation_degrees.y)).rotated(Vector3(0,1,0),PI).rotated(Vector3(1,0,0),PI/2), Vector3(0,0,-1)).rotated(Vector3(1,0,0),PI/2))
+	skel.set_bone_pose(bone_id, skel.get_bone_pose(bone_id).looking_at((target-Vector3(0,2.5,0)-transform.origin).rotated(Vector3(0,1,0), -deg2rad(app.rotation_degrees.y)).rotated(Vector3(0,1,0),PI).rotated(Vector3(1,0,0),PI/2), Vector3(0,0,-1)).rotated(Vector3(1,0,0),PI/2))
 
 func point_to(bone_id, target, offset):
 	#skel.set_bone_pose(bone_id, skel.get_bone_pose(bone_id).looking_at((target-Vector3(0,1,0)-transform.origin).rotated(Vector3(0,1,0), -deg2rad(app.rotation_degrees.y)).rotated(Vector3(0,1,0),PI).rotated(Vector3(1,0,0),PI/2), Vector3(0,0,-1)).rotated(Vector3(1,0,0),PI/2))

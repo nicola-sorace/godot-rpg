@@ -2,7 +2,6 @@
 
 [ext_resource path="res://dae/character.dae" type="PackedScene" id=1]
 
-
 [sub_resource type="GDScript" id=1]
 
 script/source = "extends \"../scripts/Person.gd\"
@@ -22,10 +21,10 @@ func tree_killed():
 
 [sub_resource type="CapsuleShape" id=2]
 
-radius = 1.5
-height = 2.5
+radius = 0.6
+height = 0.7
 
-[node name="Tutor" type="RigidBody" index="0" groups=[
+[node name="Tutor" type="RigidBody" groups=[
 "object",
 ]]
 
@@ -76,7 +75,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="1"]
 
-transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 2.9, 0 )
+transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.97, 0 )
 shape = SubResource( 2 )
 disabled = false
 _sections_unfolded = [ "Transform" ]

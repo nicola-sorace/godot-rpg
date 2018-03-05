@@ -13,7 +13,7 @@ func _ready():
 
 [sub_resource type="SphereShape" id=2]
 
-radius = 0.5
+radius = 0.3
 
 [sub_resource type="ParticlesMaterial" id=3]
 
@@ -108,8 +108,8 @@ _sections_unfolded = [ "Albedo", "Roughness" ]
 [sub_resource type="SphereMesh" id=5]
 
 material = SubResource( 4 )
-radius = 0.2
-height = 0.4
+radius = 0.1
+height = 0.2
 radial_segments = 64
 rings = 32
 is_hemisphere = false
@@ -131,7 +131,7 @@ func _ready():
 #	pass
 "
 
-[node name="Rubble" type="RigidBody"]
+[node name="Rubble" type="RigidBody" index="0"]
 
 input_ray_pickable = false
 input_capture_on_drag = false

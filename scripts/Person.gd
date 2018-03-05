@@ -95,7 +95,7 @@ func _physics_process(delta):
 	pass
 	
 func face(bone_id, target):
-	skel.set_bone_pose(bone_id, skel.get_bone_pose(bone_id).looking_at((target-Vector3(0,4,0)-transform.origin).rotated(Vector3(0,1,0), -deg2rad(app.rotation_degrees.y)).rotated(Vector3(0,1,0),PI).rotated(Vector3(1,0,0),PI/2), Vector3(0,0,-1)).rotated(Vector3(1,0,0),PI/2))
+	skel.set_bone_pose(bone_id, skel.get_bone_pose(bone_id).looking_at((target-Vector3(0,2.5,0)-transform.origin).rotated(Vector3(0,1,0), -deg2rad(app.rotation_degrees.y)).rotated(Vector3(0,1,0),PI).rotated(Vector3(1,0,0),PI/2), Vector3(0,0,-1)).rotated(Vector3(1,0,0),PI/2))
 
 func point_to(bone_id, target, offset):
 	#skel.set_bone_pose(bone_id, skel.get_bone_pose(bone_id).looking_at((target-Vector3(0,1,0)-transform.origin).rotated(Vector3(0,1,0), -deg2rad(app.rotation_degrees.y)).rotated(Vector3(0,1,0),PI).rotated(Vector3(1,0,0),PI/2), Vector3(0,0,-1)).rotated(Vector3(1,0,0),PI/2))
