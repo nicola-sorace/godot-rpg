@@ -1,8 +1,11 @@
 extends Button
 
+var hud
+
 var spell
 
 func _ready():
+	hud = get_node("../../")
 	spell = get_node("Script")
 	#icon = spell.image
 	connect("pressed", self, "pressed")
@@ -19,10 +22,14 @@ func set_spell(name):
 	disabled = false
 
 func pressed():
-	pass
+	if Input.is_key_pressed(KEY_SHIFT):
+		hud.equip_spell(1, self)
+	else:
+		hud.equip_spell(0, self)
+		
+	release_focus()
 
 func mouse_exited():
-	print("exitedddd")
 	if Input.is_mouse_button_pressed(1):
 		print("HEADSAD")
-	get_tree().get_root().get_node("Root/Hud").drag(self)
+		hud.drag(self)

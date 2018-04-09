@@ -9,5 +9,4 @@ func _init():
 
 func event(id):
 	if id==0:
-		player.get_node("../Hud/Spells/Spell2").set_spell("Boulder")
-		player.spell_l = player.get_node("../Hud/Spells/Spell2").spell
+		hud.spell_slots[1].set_spell("Boulder")

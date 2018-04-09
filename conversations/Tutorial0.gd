@@ -12,6 +12,5 @@ func _init():
 
 func event(id):
 	if id==0:
-		player.get_node("../Hud/Spells/Spell1").set_spell("Flames")
-		player.spell_r = player.get_node("../Hud/Spells/Spell1").spell
+		hud.spell_slots[0].set_spell("Flames")
 		speaker.conversation = load("res://conversations/Tutorial1.gd")

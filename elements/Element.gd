@@ -8,6 +8,8 @@ var life = 100
 var attack = 0.05
 var min_impact = 0  #Minimum speed of collision required for damage. If non-zero, the object will also be destroyed after causing damage.
 
+signal killed
+
 func _init():
 	pass
 
@@ -17,7 +19,7 @@ func _ready():
 func _process(delta):
 	time += 1
 	if time>life:
-		pre_death()
+		emit_signal("killed")
 		queue_free()
 		
 	"""
@@ -37,12 +39,9 @@ func body_entered(body):
 		if body.is_in_group("object") and body.max_hp>=0:
 			body.hurt(attack)
 		if min_impact > 0:
-				pre_death()
+				emit_signal("killed")
 				queue_free()
 
 func set_caster(obj):
 	caster = obj
 	add_collision_exception_with(caster)
-	
-func pre_death():
-	pass

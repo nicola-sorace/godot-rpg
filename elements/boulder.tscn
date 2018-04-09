@@ -10,12 +10,12 @@ func _init():
 	min_impact = 2
 
 func _ready():
-	pass
+	connect(\"killed\", self, \"make_rubble\")
 
-func pre_death():
+func make_rubble():
 	var rubble = load(\"res://elements/rubble.tscn\").instance()
-	rubble.global_transform.origin = global_transform.origin
-	get_tree().get_root().get_node(\"Root\").add_child(rubble)"
+	get_tree().get_root().get_node(\"Root\").add_child(rubble)
+	rubble.global_transform.origin = global_transform.origin"
 
 [sub_resource type="SphereShape" id=2]
 
@@ -184,7 +184,7 @@ radial_segments = 64
 rings = 32
 is_hemisphere = false
 
-[node name="Boulder" type="RigidBody" index="0"]
+[node name="Boulder" type="RigidBody"]
 
 input_ray_pickable = false
 input_capture_on_drag = false

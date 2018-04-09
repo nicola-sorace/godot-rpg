@@ -146,7 +146,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[node name="Root" type="Spatial"]
+[node name="Root" type="Spatial" index="0"]
 
 [node name="Hud" parent="." index="0" instance=ExtResource( 1 )]
 

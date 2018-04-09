@@ -11,6 +11,10 @@ var arm_l
 var hand_r
 var hand_l
 
+var max_mana = 100
+var mana = max_mana
+var mana_reg = 0.5
+
 var spell_r
 var spell_l
 
@@ -31,16 +35,23 @@ func _ready():
 	hand_r = skel.find_bone("Arm2.R")
 	hand_l = skel.find_bone("Arm2.L")
 	
-	#"""
+	"""
 	get_node("../Hud/Spells/Spell1").set_spell("Flames")
 	get_node("../Hud/Spells/Spell2").set_spell("Boulder")
-	#"""
+	"""
+	get_node("../Hud/Spells/Spell3").set_spell("Jump")
 	
-	spell_r = get_node("../Hud/Spells/Spell1").spell
-	spell_l = get_node("../Hud/Spells/Spell2").spell
+	spell_r = get_node("../Hud/Spells/Spell1")
+	spell_l = get_node("../Hud/Spells/Spell2")
+	
 	
 
 func _process(delta):
+	
+	if mana<max_mana:
+		mana += mana_reg
+	else:
+		mana = max_mana
 	
 	###  Point towards cursor:
 	var pos
@@ -94,21 +105,25 @@ func _process(delta):
 		if Input.is_action_pressed("spell_right"):  #Right spell
 			point_to(arm_r, pos, Vector3(-2,2,20))
 			if Input.is_action_just_pressed("spell_right"):
-				spell_r.start_cast(self, source, pos)
-			spell_r.cast(self, source, pos)
+				spell_r.spell.start_cast(self, source, pos)
+			spell_r.spell.cast(self, source, pos)
 		if Input.is_action_just_released("spell_right"):
-			spell_r.end_cast(self, source, pos)
+			spell_r.spell.end_cast(self, source, pos)
 			
 		if Input.is_action_pressed("spell_left"):  #Left spell
 			point_to(arm_l, pos, Vector3(2,2,20))
 			if Input.is_action_just_pressed("spell_left"):
-				spell_l.start_cast(self, source, pos)
-			spell_l.cast(self, source, pos)
+				spell_l.spell.start_cast(self, source, pos)
+			spell_l.spell.cast(self, source, pos)
 		if Input.is_action_just_released("spell_left"):
-			spell_l.end_cast(self, source, pos)
+			spell_l.spell.end_cast(self, source, pos)
 
 func _physics_process(delta):
 	get_hover()
+	
+func _input(event):
+	if event.is_action("ui_right"):
+		rotate_y(deg2rad(1))
 
 func get_hover():  #Returns result of an intersect ray from mouse position.
 	if not hud.has_mouse:
